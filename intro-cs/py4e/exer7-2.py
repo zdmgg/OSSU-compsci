@@ -5,10 +5,14 @@ count = 0
 
 fname = input('Enter the file name: ')
 
+if fname == 'na na boo boo':
+    print("NA NA BOO BOO TO YOU - You have been punk'd!")
+    quit()
+
 try:
     file = open(fname)
 except:
-    print('Error: No file', fname, 'was found!')
+    print('File cannot be opened:', fname)
     quit()
 
 for line in file:
