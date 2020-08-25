@@ -1,3 +1,5 @@
+# Requires mbox.txt and/or mbox-short.txt
+
 fname = input('Enter a file name: ')
 file = open(fname)
 for line in file:
