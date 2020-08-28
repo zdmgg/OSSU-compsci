@@ -2,14 +2,17 @@
 
 fname = input('Enter a file name: ')
 file = open(fname)
+counter = 0
 
 for line in file:
-    line.strip()
-    print(line)
+    line = line.rstrip()
     if line == '':
-        print(Skipped, blacnk)
         continue
-    if line.startswith('From:'):
+    if 'From:' in line:
+        continue
+    if line.startswith('From'):
         words = line.split()
-        print(words)
-        print(words[2])
+        print(words[1])
+        counter = counter + 1
+
+print('There were', counter, 'lines in the file with From as the first word.')
