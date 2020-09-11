@@ -20,7 +20,6 @@ for k, v in counts.items():
     sort.append((k, v))
 
 sort = sorted(sort)
-print(sort)
 
 for k, v in sort:
     print(k, v)
