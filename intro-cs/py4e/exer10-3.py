@@ -28,4 +28,4 @@ for k, v in counts.items():
 sortedlist = sorted(sortedlist, reverse = True)
 
 for k, v in sortedlist:
-    print(k, v)
+    print(k, v, k*100/len(approved))
