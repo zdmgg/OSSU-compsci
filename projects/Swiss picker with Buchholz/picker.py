@@ -11,6 +11,8 @@ def exitfunc(i):
 
 print('\n\nSWISS PICKER WITH BUCHHOLZ')
 time.sleep(1)
+print("Type 'exit' whenever you want to exit the program.")
+time.sleep(1)
 
 
 # STEP 1: Inputting team names
@@ -20,12 +22,21 @@ time.sleep(1)
 # Importing teams or inputting teams?
 while True:
     yn = input('\nWould you like to import team names?\n> ')
+    exitfunc(yn)
     time.sleep(0.5)
 
     # Importing teams
     if re.match('[Yy][Ee][Ss]', yn):
-        file = input('\nPlease enter the file name.\n> ')
-        imp = open(file)
+        while True:
+            file = input('\nPlease enter the file name.\n> ')
+            exitfunc(file)
+            try:
+                imp = open(file)
+            except:
+                print('\nError: file not found. Please try again.')
+                time.sleep(0.5)
+                continue
+            break
         for line in imp:
             line = line.strip()
             teams[line] = [0, 0]
@@ -33,17 +44,24 @@ while True:
         print('\nStep 1 is finished!')
         time.sleep(1)
         print('\nYou have inputted', len(teams), 'teams into the tournament.')
+
+        # Showing inputted teams
+        ctr = 0
+        time.sleep(1)
+        print('\nHere are your inputted teams:\n')
+        for team in teams.keys():
+            ctr = ctr + 1
+            time.sleep(1)
+            print(ctr, '-', team)
+
         time.sleep(1.5)
-        print(teams)
         break
 
     # Inputting teams
     if re.match('[Nn][Oo]', yn):
         print('\nYou have chosen not to import team names.')
         time.sleep(1)
-        print('Type "done" when you are done entering team names.')
-        time.sleep(1)
-        print('Type "exit" to exit the program.\n')
+        print('Type "done" when you are done entering team names.\n')
         time.sleep(1)
 
         while True:
@@ -59,10 +77,20 @@ while True:
                 print('\nYou have inputted', len(teams), 'teams into the tournament.')
                 time.sleep(1.5)
 
+                print('\nHere are your inputted teams:\n')
+                ctr = 0
+                for team in teams.keys():
+                    ctr = ctr + 1
+                    time.sleep(1)
+                    print(ctr, '-', team)
+
+                time.sleep(1.5)
+
 
                 while True:
                     yn = input('\nWould you like to input more teams?\n> ')
                     time.sleep(0.5)
+                    exitfunc(yn)
                     if re.match('^[Yy][Ee][Ss]', yn) or re.search('^[Nn][Oo]', yn):
                         print('\n')
                         break
@@ -95,6 +123,8 @@ if len(teams) % 2 == 1:
     print('that gets to automatically advance to the second round.')
     time.sleep(1.5)
     team = input('\nEnter team: ')
+    
+    exitfunc(team)
 
 elif len(teams) % 2 == 0:
     pass
